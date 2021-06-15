@@ -9,3 +9,5 @@
  - ng update @angular/cli 
  - ng update @angular/core
  - npm install --save-dev @angular-devkit/build-angular
+ - You have to create a .gitignore file and add node_modules/ 
+inside it to tell git not to track them as they are third party code.
