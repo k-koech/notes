@@ -1,2 +1,5 @@
 
+#flask forms
 pip install flask-wtf
+##installing sql
+pip install flask-sqlalchemy
