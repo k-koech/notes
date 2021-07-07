@@ -1,1 +1,9 @@
 npm install bootstrap jquery popper.js --save
+
+#Routing
+const routes: Routes = [
+  {path: "", pathMatch: "full", redirectTo: "/home"},
+  {path: "home",component: HomeComponent},
+  {path: "venue",component: VenueComponent},
+  {path: "locations",component: LocationsComponent},
+];
