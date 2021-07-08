@@ -7,3 +7,6 @@ const routes: Routes = [
   {path: "venue",component: VenueComponent},
   {path: "locations",component: LocationsComponent},
 ];
+
+##gh-pages
+npm i -g angular-cli-ghpages
