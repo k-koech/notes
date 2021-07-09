@@ -12,3 +12,6 @@ const routes: Routes = [
 git remote add origin https://github.com/k-koech/Angular-Fifa22.git
 ng add angular-cli-ghpages
 ng deploy --base-href=angular-hosting-demo(reponame)
+##
+Angular language service - extensions
+angula console
