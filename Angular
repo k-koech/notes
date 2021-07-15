@@ -20,3 +20,4 @@ npm config set legacy-peer-deps true
 ng generate class Goal - creating class
 ng generate directive strikethrough - custom directive
 ng generate pipe date-count -
+ng generate service goal-service/goal
