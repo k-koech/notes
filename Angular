@@ -21,3 +21,94 @@ ng generate class Goal - creating class
 ng generate directive strikethrough - custom directive
 ng generate pipe date-count -
 ng generate service goal-service/goal
+npm install --save @ngx-progressbar/core@3.0.2 @ngx-progressbar/http-client@3.0.2 - ADDING LOADERS
+
+##There are 3 ways in which we can register providers. 
+In the metadata of the service ( in the @Injectable() decorator)
+  
+In the @NgModule() decorator (inside the app.module file)
+   providers: [GoalService], in the app-module
+In the @component() metadata (in the component where you want to inject the service)
+   src/app/goal/goal.component.ts
+    import { Component, OnInit } from '@angular/core';
+    import { GoalService } from '../goal-service/goal.service';
+
+    @Component({
+      selector: 'app-goal',
+      templateUrl: './goal.component.html',
+      styleUrls: ['./goal.component.css'],
+      providers: [GoalService]
+    })
+  
+########Injecting the GoalService into the Goal Component
+src/app/goal/goal.component.ts
+
+import { Component, OnInit } from '@angular/core';
+import { Goal } from '../goal';
+import { GoalService } from '../goal-service/goal.service';
+....
+export class GoalComponent implements OnInit {
+
+  goals:Goal[];
+
+  constructor(goalService:GoalService) {
+    this.goals = goalService.getGoals()
+  }
+....
+}
+
+##############HTTP CLIENT###################
+src/app/app.module.ts
+...
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+...
+@NgModule({
+...
+  imports: [
+...
+    FormsModule,
+    HttpClientModule
+  ],
+...
+})
+----------
+src/app/quote-class/quote.ts
+
+export class Quote {
+
+  constructor(public author:string, public quote:string ){}
+}
+----------
+src/app/goal/goal.component.ts
+
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+...
+import { Quote } from '../quote-class/quote';
+....
+export class GoalComponent implements OnInit {
+  
+  goals:Goal[];
+  alertService:AlertService;
+  quote:Quote;
+....
+  constructor(goalService:GoalService, alertService:AlertService, private http:HttpClient) {
+    this.goals = goalService.getGoals()
+    this.alertService = alertService;
+  }
+
+  ngOnInit() {
+
+    interface ApiResponse{
+      author:string;
+      quote:string;
+    }
+
+    this.http.get<ApiResponse>("http://quotes.stormconsultancy.co.uk/random.json").subscribe(data=>{
+      // Succesful API request
+      this.quote = new Quote(data.author, data.quote)
+    })
+  }
+
+}
