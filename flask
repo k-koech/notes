@@ -3,3 +3,8 @@
 pip install flask-wtf
 ##installing sql
 pip install flask-sqlalchemy
+
+
+source virtual/bin/activate
+pip install "Flask==1.1.4"
+heroku logs --tail --app
