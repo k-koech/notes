@@ -2,9 +2,38 @@
 #flask forms
 pip install flask-wtf
 ##installing sql
+pip install email_validator
 pip install flask-sqlalchemy
+db.create_all()
+from flaskBlog import User,Post
+ user_1 = User(username="KK", email="c@demo",password="password") 
+ db.session.add(user_1)
+ db.session.commit()
+ User.query.all()
+ User.query.first()
+ User.query.filter_by(username="KK").first()
+ User.query.filter_by(username="KK").all()
+ user = User.query.get(1)
+ post_1 = Post(title="Blog 1", content="First Blog Content",user_id = user.id)
+ post.user_id
+ post.author
+  db.drop_all()
+>>> db.create_all()
+>>> User.query.all()
+>>> Post.query.all() 
+
+from flaskblog.models import User, Post 
+db.create_all()
+User.query.all()
 
 
 source virtual/bin/activate
 pip install "Flask==1.1.4"
 heroku logs --tail --app
+
+#Windows
+pip install virtualenv
+py -m venv env
+env\Scripts\activate
+set FLASK_APP=hello
+flask run
