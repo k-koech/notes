@@ -4,17 +4,40 @@ pip install flask-wtf
 ##installing sql
 pip install email_validator
 pip install flask-sqlalchemy
+python3 -m flask db init
+pip install flask-migrate --upgrade
+sudo lsof -i:5000
+kill -9 11408
+
 db.create_all()
 from flaskBlog import User,Post
  user_1 = User(username="KK", email="c@demo",password="password") 
- db.session.add(user_1)
+ db.session.add(user_1)  // >>> db.session.add_all([user_lisa,user_victor])
  db.session.commit()
+ 
+ ###########We will use the flask-migrate extension to create database migrations
+ pip install flask-migrate
+ python3 manage.py db init
+ python3 manage.py db migrate -m "Initial Migration"
+ python3 manage.py db upgrade
+ pip install flask-login
+ pip install flask-uploads
+ pip install flask-simplemde markdown2
+ ###########Queries
  User.query.all()
  User.query.first()
  User.query.filter_by(username="KK").first()
+ users = User.query.filter(User.id > 1).all()
+ users = User.query.limit(2).all()
  User.query.filter_by(username="KK").all()
  user = User.query.get(1)
  post_1 = Post(title="Blog 1", content="First Blog Content",user_id = user.id)
+ 
+ single_user = User.query.filter_by(id = 1).update({"username": "James Muriuki"})
+ single_user = User.query.filter_by(id = 1).first()
+ db.session.delete(single_user)
+ 
+ 
  post.user_id
  post.author
   db.drop_all()
@@ -27,15 +50,22 @@ from flaskBlog import User,Post
  bcrypt = Bcrypt()
  hashed_pw = bcrypt.generate_password_hash('testing').decode('utf-8')
  bcrypt.check_password_hash(hashed_pw, 'testing')  
+ 
+???????????????????????????????????????????????????????????????????????????????????????????????????????????????
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:kkkk@localhost/watchlist_test'
+
 
 
 from flaskblog.models import User, Post 
 db.create_all()
 User.query.all()
-
+sudo -u postgres -i
+psql
 
 source virtual/bin/activate
+deactivate
 pip install "Flask==1.1.4"
+pip install flask-migrate
 heroku logs --tail --app
 
 #Windows
@@ -44,3 +74,18 @@ py -m venv env
 env\Scripts\activate
 set FLASK_APP=hello
 flask run
+
+
+
+////////////////////////////////////
+    @property
+    def password(self):
+        raise AttributeError('You cannot read the password attribute')
+
+    @password.setter
+    def password(self, password):
+        self.pass_secure = generate_password_hash(password)
+
+
+    def verify_password(self,password):
+        return check_password_hash(self.pass_secure,password)
