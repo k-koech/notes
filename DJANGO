@@ -1,0 +1,9 @@
+python manage.py shell
+Editor.objects.order_by('first_name')
+Editor.objects.order_by('-first_name')
+Editor.objects.all()[:]
+
+
+>>> Editor.objects.filter(id = 2).update(first_name ='Kim')
+>>> Editor.objects.filter(id = 2).delete()
+pip install pillow
