@@ -9,6 +9,8 @@ pip install flask-migrate --upgrade
 sudo lsof -i:5000
 kill -9 11408
 kill -9 $(ps -A | grep python | awk '{print $1}')
+sudo -u postgres -i
+
 
 db.create_all()
 from flaskBlog import User,Post
