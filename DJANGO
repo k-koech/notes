@@ -3,12 +3,20 @@ Editor.objects.order_by('first_name')
 Editor.objects.order_by('-first_name')
 Editor.objects.all()[:]
 
+django-admin startproject 
+python manage.py startapp 
 
 >>> Editor.objects.filter(id = 2).update(first_name ='Kim')
 >>> Editor.objects.filter(id = 2).delete()
 pip install pillow
 
-
+from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
+import datetime as dt
+from django.contrib import messages
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.hashers import make_passwor
+from cloudinary.models import CloudinaryField
+user=models.ForeignKey("Users",on_delete=models.CASCADE)
 
 class MyAccountManager(BaseUserManager):
     def create_user(self, email, username, password=None):
@@ -63,3 +71,34 @@ class Users(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+ user= authenticate(email=email, password=password)
+# Email configurations
+EMAIL_USE_SSL = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_USE_TLS = False
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+
+#DATABASE
+if os.environ.get('MODE')=="dev":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'notebook',
+            'USER':'postgres',
+            'PASSWORD': os.environ['PASSWORD'],
+            'HOST':'localhost', 
+        }
+    }
+
+# production
+else:
+   DATABASES = {
+       'default': dj_database_url.config(
+           default=os.environ.get('DATABASE_URL')
+       )
+   }
