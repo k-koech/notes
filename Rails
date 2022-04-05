@@ -1,0 +1,4 @@
+rails new blog
+bin/rails server
+bin/rails generate controller Articles index --skip-routes
+bin/rails generate model Article title:string body:text
