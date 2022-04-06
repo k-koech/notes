@@ -3,3 +3,8 @@ bin/rails server
 bin/rails generate controller Articles index --skip-routes
 bin/rails generate model Article title:string body:text
 rails new [application name] -d postgresql
+
+sudo -u postgres -i
+sudo service postgresql restart
+drop database "blog-ruby";
+REVOKE CONNECT ON DATABASE "blog-ruby" FROM public;
