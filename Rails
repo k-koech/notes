@@ -8,3 +8,7 @@ sudo -u postgres -i
 sudo service postgresql restart
 drop database "blog-ruby";
 REVOKE CONNECT ON DATABASE "blog-ruby" FROM public;
+
+ bundle install
+ gem update --system
+bundle exec figaro install
