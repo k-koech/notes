@@ -3,6 +3,7 @@ bin/rails server
 bin/rails generate controller Articles index --skip-routes
 bin/rails generate model Article title:string body:text
 rails new [application name] -d postgresql
+rails db:setup
 
 sudo -u postgres -i
 sudo service postgresql restart
