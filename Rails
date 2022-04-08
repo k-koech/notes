@@ -12,3 +12,6 @@ REVOKE CONNECT ON DATABASE "blog-ruby" FROM public;
  bundle install
  gem update --system
 bundle exec figaro install
+
+
+ALTER USER user_name WITH PASSWORD 'new_password';
