@@ -96,10 +96,13 @@ if os.environ.get('MODE')=="dev":
         }
     }
 
-# production
+- production
 else:
    DATABASES = {
        'default': dj_database_url.config(
            default=os.environ.get('DATABASE_URL')
        )
    }
+   
+### Rest api cutom vlidations
+https://stackoverflow.com/questions/31278418/django-rest-framework-custom-fields-validation
