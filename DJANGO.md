@@ -5,6 +5,7 @@ Editor.objects.all()[:]
 
 django-admin startproject 
 python manage.py startapp 
+pthon manage.py flush
 
 >>> Editor.objects.filter(id = 2).update(first_name ='Kim')
 >>> Editor.objects.filter(id = 2).delete()
