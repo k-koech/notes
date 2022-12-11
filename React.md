@@ -3,6 +3,7 @@
   - npm install --save nodemon
   - node  index.js
   - npm install --save dotenv
+  - npm install http-proxy-middleware --save
   
   - npm install --save node-fetch
   - npm install --save react-helmet
